@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+/* Utility Classes */
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 10px;
+  background: green;
+  border: 1px black solid;
+  border-radius: 5px;
+  transition: 100ms linear;
+}
+.btn:hover {
+  background: black;
+  color: green;
+}
+/* Bar & Pipe Game */
+
+.bar {
+  position: absolute;
+  width: 600px;
+  height: 10px;
+  background: brown;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pipe {
+  color: #fff;
+  position: absolute;
+  height: 50px;
+  width: 5px;
+  background: black;
+  top: -18px;
+  left: 0px;
+  transform: translateX(0px);
+  transition: 2s linear;
+}
+.pipe.goPipe {
+  transform: translateX(600px);
+}
+
+/* Main styling */
+.data {
+  display: flex;
+  font-size: 30px;
+  gap: 20px;
+}
+.text {
+  font-weight: bold;
+}
