@@ -41,12 +41,25 @@ a {
   background: black;
   top: -18px;
   left: 0px;
-  transform: translateX(0px);
-  transition: 2s linear;
+  margin: 0px;
+  transition: 2.5s linear;
 }
-.pipe.goPipe {
+.green {
+  position: absolute;
+  top: -6px;
+  padding: 10px 0px;
+  border: 2px solid rgb(54, 53, 47);
+  border-radius: 1px;
+  width: 50px;
+  height: auto;
+  background: green;
+  margin: 0px 0px 0px 350px;
+}
+
+/* CSS MATRIX METHOD
+/* .pipe.goPipe {
   transform: translateX(600px);
-}
+} */
 
 /* Main styling */
 .data {
