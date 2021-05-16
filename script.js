@@ -37,6 +37,7 @@ const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
       console.log(pipeY);
       if (pipeY === "0px") pipeY = "0px 0px 0px 0px";
       let marginP = +pipeY.split(" ")[3].replace("px", "");
+      if (greenY === "0px") greenY = "0px 0px 0px 0px";
       let marginG = +greenY.split(" ")[3].replace("px", "");
       // Uptade "green" margin value
       marginG = greenMargin;
