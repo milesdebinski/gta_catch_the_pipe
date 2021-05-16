@@ -1,34 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+:root {
+  /* Default color set */
+  /* --bar-color-border: rgba(255, 255, 255, 0.2);
+  --bar-color-first: rgba(107, 38, 38, 0.65);
+  --bar-color-second: rgba(105, 9, 9, 0.95);
+  --green-color-first: rgba(90, 148, 129, 0.95);
+  --green-color-second: rgba(0, 150, 105, 0.95);
+  --pipe-color-first: rgba(216, 202, 5, 0.8);
+  --pipe-color-green: rgba(0, 150, 105, 0.95);
+  --pipe-color-bar: rgba(105, 9, 9, 0.85); */
+
+  /* Alt color set */
+  --bar-color-border: rgba(255, 255, 255, 0.3);
+  --bar-color-first: rgba(57, 76, 100, 0.9);
+  --bar-color-second: rgba(121, 24, 21, 0.95);
+  --green-color-first: rgba(43, 110, 187, 0.95);
+  --green-color-second: rgba(102, 152, 104, 0.95);
+  --pipe-color-first: rgb(240, 200, 80, 0.95);
+  --pipe-color-green: rgba(102, 152, 104, 0.95);
+  --pipe-color-bar: rgba(121, 24, 21, 0.95);
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 a {
   text-decoration: none;
-  color: black;
+  color: #fff;
 }
 /* Utility Classes */
 .btn {
   display: inline-block;
   padding: 5px 10px;
   margin: 10px;
-  background: green;
-  border: 1px black solid;
+  background: #306fbc;
+
   border-radius: 5px;
   transition: 100ms linear;
 }
 .btn:hover {
-  background: black;
-  color: #008000;
+  background: #6099d3;
 }
 /* Bar & Pipe Game */
 .bar {
   position: absolute;
   width: 600px;
   height: 10px;
-  background: rgba(107, 38, 38, 0.65);
+  background: var(--bar-color-first);
 
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--bar-color-border);
   top: 91%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -39,10 +63,11 @@ a {
   position: absolute;
   height: 20px;
   width: 6px;
-  background: rgba(216, 202, 5, 0.8);
+  background: var(--pipe-color-first);
+
   border-bottom: 1px solid rgb(252, 252, 252 0.2);
   border-top: 5px solid rgb(252, 252, 252 0.2);
-  border-top-right-radius: 5px;
+  border-top-right-radius: 7px;
   top: -10px;
   left: 0px;
   margin: 0px;
@@ -54,7 +79,7 @@ a {
   border-radius: 1px;
   width: 50px;
 
-  background: rgba(90, 148, 129, 0.95);
+  background: var(--green-color-first);
 
   margin: 0px 0px 0px 350px;
 }
@@ -74,9 +99,16 @@ a {
 /* Main styling */
 .data {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 30px;
   gap: 20px;
 }
 .text {
   font-weight: bold;
+}
+.score {
+  display: flex;
+  gap: 20px;
 }

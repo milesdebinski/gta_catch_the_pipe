@@ -44,9 +44,9 @@ const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
         pipe.style.transition = "all 0s linear 0s";
         pipe.style.margin = "0px 0px 0px 0px";
         // Reset styles
-        pipe.style.background = "rgba(216, 202, 5, 0.8)";
-        green.style.background = "rgba(90, 148, 129, 0.95)";
-        bar.style.background = "rgba(107, 38, 38, 0.65)";
+        pipe.style.background = "var(--pipe-color-first)";
+        green.style.background = "var(--green-color-first)";
+        bar.style.background = "var(--bar-color-first)";
       }, 950);
       // How many games?
 
@@ -64,14 +64,14 @@ const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
         audioSuccess.play();
         score++;
         games++;
-        green.style.background = "rgba(0, 150, 105, 0.95)";
-        pipe.style.background = "rgba(0, 150, 105, 0.95)";
+        green.style.background = "var(--green-color-second)";
+        pipe.style.background = "var(--pipe-color-green)";
         pipe.style.transition = "all 0s linear 0s";
       } else {
         audioFail.play();
         games++;
-        bar.style.background = "rgba(105, 9, 9, 0.95)";
-        pipe.style.background = "rgba(105, 9, 9, 0.85)";
+        bar.style.background = "var(--bar-color-second)";
+        pipe.style.background = "var(--pipe-color-bar)";
         pipe.style.transition = "all 0s linear 0s";
       }
       trans_data.textContent = `${score}`;
@@ -94,7 +94,7 @@ const start = (greenWidth, greenMargin, pipeSpeed) => {
   green.style.margin = `0px 0px 0px ${greenMargin}px`;
   pipe.style.transition = `all ${pipeSpeed}s linear 0s`;
   pipe.style.margin = "0px 0px 0px 600px";
-  pipe.style.background = "rgb(255, 196, 0)";
+
   // Display Data
   trans_data.textContent = `${score}`;
   // How many games do you wanna play?
