@@ -8,6 +8,7 @@ const trans_data = document.querySelector(".trans_data");
 const pipe = document.getElementById("pipe");
 const green = document.getElementById("green");
 const bar = document.getElementById("bar");
+const button = document.getElementById("button");
 // Computed Values to get data
 const transPipe = getComputedStyle(pipe, null);
 const transGreen = getComputedStyle(green, null);
@@ -98,6 +99,7 @@ const start = (greenWidth, greenMargin, pipeSpeed) => {
   // Display Data
   trans_data.textContent = `${score}`;
   // How many games do you wanna play?
+  console.log(games);
   if (games >= setGames) {
     alert(`Game over. Your score: ${score}.`);
     return console.log(`Your score was: ${score}`);
@@ -108,4 +110,28 @@ const start = (greenWidth, greenMargin, pipeSpeed) => {
 // how many games do you wanna play?
 let setGames = 3;
 // start the game!
+
+button.addEventListener("click", () => {
+  if (games === setGames || games === 0) {
+    setTimeout(() => {
+      games = 0;
+      score = 0;
+      bar.style.transition = `all 0s linear 0s`;
+      pipe.style.transition = `all 0s linear 0s`;
+      pipe.style.margin = "0px 0px 0px 0px";
+      bar.style.opacity = "1";
+      console.log([games, setGames]);
+    }, 100);
+    setTimeout(() => {
+      pipe.style.margin = "0px 0px 0px 600px";
+      pipe.style.transition = `all ${ps}s linear 0s`;
+    }, 800);
+    if (games === setGames) {
+      setTimeout(() => {
+        start(gw, gm, ps);
+      }, 500);
+    }
+  }
+});
+
 start(gw, gm, ps);
