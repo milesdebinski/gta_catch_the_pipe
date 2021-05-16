@@ -19,8 +19,8 @@ let score = 0;
 let games = 0;
 // Initial values greenWidth, greenMargin, pipeSpeed
 let gw = Math.floor(Math.random() * (80 - 20) + 20);
-let gm = Math.floor(Math.random() * (400 - 100) + 100);
-let ps = Math.floor(Math.random() * (4 - 0.5) + 0.5);
+let gm = Math.floor(Math.random() * (400 - 250) + 250);
+let ps = Math.random() * (2 - 0.7) + 0.7;
 // Stop The Pipe on keydown - SPACE
 const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
   const spaceListenerCallback = (action) => {
@@ -53,7 +53,7 @@ const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
       setTimeout(() => {
         // Randomize values each time start is run
         gw = Math.floor(Math.random() * (80 - 20) + 20);
-        gm = Math.floor(Math.random() * (400 - 200) + 200);
+        gm = Math.floor(Math.random() * (400 - 150) + 150);
         ps = Math.random() * (2 - 0.7) + 0.7;
 
         start(gw, gm, ps);
