@@ -99,12 +99,13 @@ const start = (greenWidth, greenMargin, pipeSpeed) => {
   trans_data.textContent = `${score}`;
   // How many games do you wanna play?
   if (games >= setGames) {
+    alert(`Game over. Your score: ${score}.`);
     return console.log(`Your score was: ${score}`);
   }
 
   stopThePipeLister(greenWidth, greenMargin, pipeSpeed);
 };
 // how many games do you wanna play?
-let setGames = 20;
+let setGames = 3;
 // start the game!
 start(gw, gm, ps);
