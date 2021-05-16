@@ -34,6 +34,8 @@ const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
       // Display "pipe" location - margin value
 
       // Destructuring margin values for the next If statement
+      console.log(pipeY);
+      if (pipeY === "0px") pipeY = "0px 0px 0px 0px";
       let marginP = +pipeY.split(" ")[3].replace("px", "");
       let marginG = +greenY.split(" ")[3].replace("px", "");
       // Uptade "green" margin value
@@ -95,6 +97,7 @@ const start = (greenWidth, greenMargin, pipeSpeed) => {
   green.style.margin = `0px 0px 0px ${greenMargin}px`;
   pipe.style.transition = `all ${pipeSpeed}s linear 0s`;
   pipe.style.margin = "0px 0px 0px 600px";
+  green.style.display = "block";
 
   // Display Data
   trans_data.textContent = `${score}`;

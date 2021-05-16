@@ -76,7 +76,7 @@ button {
   border-top-right-radius: 7px;
   top: -10px;
   left: 0px;
-  margin: 0px;
+  margin: 0px 0px 0px 0px;
   transition: 2.5s linear;
 }
 .green {
@@ -84,7 +84,7 @@ button {
   padding: 5px 0px;
   border-radius: 1px;
   width: 50px;
-
+  display: none;
   background: var(--green-color-first);
 
   margin: 0px 0px 0px 350px;
