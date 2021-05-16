@@ -69,7 +69,6 @@ const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
         pipe.style.transition = "all 0s linear 0s";
       } else {
         audioFail.play();
-        score--;
         games++;
         bar.style.background = "rgba(100, 6, 6, 0.95)";
         pipe.style.background = "rgba(100, 6, 6, 0.95)";
