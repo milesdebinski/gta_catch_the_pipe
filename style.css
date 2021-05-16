@@ -19,16 +19,15 @@ a {
 }
 .btn:hover {
   background: black;
-  color: green;
+  color: #008000;
 }
 /* Bar & Pipe Game */
-
 .bar {
   position: absolute;
   width: 600px;
   height: 10px;
-  background: brown;
-  top: 50%;
+  background: rgba(107, 38, 38, 0.65);
+  top: 91%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -36,24 +35,32 @@ a {
 .pipe {
   color: #fff;
   position: absolute;
-  height: 50px;
+  height: 30px;
   width: 5px;
-  background: black;
-  top: -18px;
+  background: rgba(216, 202, 5, 0.8);
+
+  top: -10px;
   left: 0px;
   margin: 0px;
   transition: 2.5s linear;
 }
 .green {
   position: absolute;
-  top: -6px;
-  padding: 10px 0px;
-  border: 2px solid rgb(54, 53, 47);
+  padding: 5px 0px;
   border-radius: 1px;
   width: 50px;
-  height: auto;
-  background: green;
+
+  background: rgba(95, 160, 95, 0.95);
+  /* background: rgba(2, 99, 2, 0.95); */
+
   margin: 0px 0px 0px 350px;
+}
+
+/* background */
+.bg {
+  position: relative;
+  height: 100vh;
+  background: url("./img/gtaBackground.jpg") no-repeat center center/cover;
 }
 
 /* CSS MATRIX METHOD

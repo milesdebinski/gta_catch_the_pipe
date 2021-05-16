@@ -1,8 +1,13 @@
+// Audio files
+let audioSuccess = new Audio("mp3/success.mp3");
+let audioFail = new Audio("mp3/fail.mp3");
+
 // Display Data
 const trans_data = document.querySelector(".trans_data");
 // Get elements
 const pipe = document.getElementById("pipe");
 const green = document.getElementById("green");
+const bar = document.getElementById("bar");
 // Computed Values to get data
 const transPipe = getComputedStyle(pipe, null);
 const transGreen = getComputedStyle(green, null);
@@ -11,10 +16,15 @@ let pipeY = transPipe.getPropertyValue("margin");
 let greenY = transGreen.getPropertyValue("margin");
 // Global variable to keep score
 let score = 0;
-
+let games = 0;
+// Initial values greenWidth, greenMargin, pipeSpeed
+let gw = Math.floor(Math.random() * (80 - 20) + 20);
+let gm = Math.floor(Math.random() * (400 - 100) + 100);
+let ps = Math.floor(Math.random() * (4 - 0.5) + 0.5);
 // Stop The Pipe on keydown - SPACE
 const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
-  window.addEventListener("keydown", (action) => {
+  const spaceListenerCallback = (action) => {
+    window.removeEventListener("keydown", spaceListenerCallback);
     if (action.keyCode === 32) {
       // Update "pipe" margin value
       pipeY = transPipe.getPropertyValue("margin");
@@ -30,27 +40,46 @@ const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
 
       // Reset the 'pipe'
       setTimeout(() => {
-        pipe.style.margin = "0px 0px 0px 0px";
+        // Pipe to the starting point.
         pipe.style.transition = "all 0s linear 0s";
-      }, 900);
+        pipe.style.margin = "0px 0px 0px 0px";
+        // Reset styles
+        pipe.style.background = "rgba(216, 202, 5, 0.8)";
+        green.style.background = "rgba(95, 160, 95, 0.95)";
+        bar.style.background = "rgba(107, 38, 38, 0.65)";
+      }, 950);
+      // How many games?
+
       setTimeout(() => {
-        window.removeEventListener("keydown", () => {
-          return false;
-        });
-        start(greenWidth, greenMargin, pipeSpeed);
+        // Randomize values each time start is run
+        gw = Math.floor(Math.random() * (80 - 20) + 20);
+        gm = Math.floor(Math.random() * (400 - 200) + 200);
+        ps = Math.random() * (2 - 0.7) + 0.7;
+
+        start(gw, gm, ps);
       }, 1000);
 
       // Add/Substract Score
       if (marginP > marginG && marginP < greenMargin + greenWidth) {
+        audioSuccess.play();
         score++;
-        console.log(score);
+        games++;
+        green.style.background = "rgba(2, 99, 2, 0.95)";
+        pipe.style.background = "rgba(2, 99, 2, 0.95)";
+        pipe.style.transition = "all 0s linear 0s";
       } else {
+        audioFail.play();
         score--;
-        console.log(score);
+        games++;
+        bar.style.background = "rgba(100, 6, 6, 0.95)";
+        pipe.style.background = "rgba(100, 6, 6, 0.95)";
+        pipe.style.transition = "all 0s linear 0s";
       }
       trans_data.textContent = `${score}`;
     }
-  });
+  };
+
+  window.addEventListener("keydown", spaceListenerCallback);
 };
 
 // Start
@@ -60,10 +89,19 @@ const start = (greenWidth, greenMargin, pipeSpeed) => {
   green.style.margin = `0px 0px 0px ${greenMargin}px`;
   pipe.style.transition = `all ${pipeSpeed}s linear 0s`;
   pipe.style.margin = "0px 0px 0px 600px";
+  pipe.style.background = "rgb(255, 196, 0)";
   // Display Data
-  // trans_data.textContent = `${score}`;
+  trans_data.textContent = `${score}`;
+  // How many games do you wanna play?
+  if (games >= 3) {
+    pipe.style.margin = "0px 0px 0px 0px";
+    bar.style.transition = `all 500ms linear 0s`;
+    bar.style.opacity = "0";
+
+    return console.log(`Your score was: ${score}`);
+  }
 
   stopThePipeLister(greenWidth, greenMargin, pipeSpeed);
 };
 
-start(100, 300, 3);
+start(gw, gm, ps);
