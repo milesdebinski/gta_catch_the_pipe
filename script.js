@@ -105,6 +105,6 @@ const start = (greenWidth, greenMargin, pipeSpeed) => {
   stopThePipeLister(greenWidth, greenMargin, pipeSpeed);
 };
 // how many games do you wanna play?
-let setGames = 3;
+let setGames = 20;
 // start the game!
 start(gw, gm, ps);
