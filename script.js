@@ -110,8 +110,9 @@ const start = (greenWidth, greenMargin, pipeSpeed) => {
 // how many games do you wanna play?
 let setGames = 3;
 
-// Restart Button
+// Restart
 button.addEventListener("click", () => {
+  console.log(games);
   if (games === setGames || games === 0) {
     setTimeout(() => {
       games = 0;
@@ -121,15 +122,15 @@ button.addEventListener("click", () => {
       pipe.style.margin = "0px 0px 0px 0px";
       bar.style.opacity = "1";
       console.log([games, setGames]);
-    }, 100);
+    }, 300);
     setTimeout(() => {
       pipe.style.margin = "0px 0px 0px 600px";
       pipe.style.transition = `all ${ps}s linear 0s`;
-    }, 800);
-    if (games === setGames) {
+    }, 500);
+    if (games >= setGames) {
       setTimeout(() => {
         start(gw, gm, ps);
-      }, 500);
+      }, 700);
     }
   }
 });
