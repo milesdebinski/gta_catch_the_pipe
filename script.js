@@ -70,8 +70,8 @@ const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
       } else {
         audioFail.play();
         games++;
-        bar.style.background = "rgba(105, 9, 9, 0.808)";
-        pipe.style.background = "rgba(105, 9, 9, 0.808)";
+        bar.style.background = "rgba(105, 9, 9, 0.95)";
+        pipe.style.background = "rgba(105, 9, 9, 0.85)";
         pipe.style.transition = "all 0s linear 0s";
       }
       trans_data.textContent = `${score}`;
@@ -79,6 +79,7 @@ const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
       if (games >= setGames) {
         bar.style.transition = `all 1000ms linear 0s`;
         bar.style.opacity = "0";
+        pipe.style.opacity = "0.7";
       }
     }
   };
