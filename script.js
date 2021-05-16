@@ -25,8 +25,8 @@ let ps = Math.random() * (2 - 0.7) + 0.7;
 // Stop The Pipe on keydown - SPACE
 const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
   const spaceListenerCallback = (action) => {
-    window.removeEventListener("keydown", spaceListenerCallback);
     if (action.keyCode === 32) {
+      window.removeEventListener("keydown", spaceListenerCallback);
       // Update "pipe" margin value
       pipeY = transPipe.getPropertyValue("margin");
       // Assign new "pipe" margin value
