@@ -135,6 +135,7 @@ button.addEventListener("click", () => {
   }
 });
 // start the game!
-window.onload = function () {
+
+setTimeout(() => {
   start(gw, gm, ps);
-};
+}, 1500);
