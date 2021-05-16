@@ -135,4 +135,6 @@ button.addEventListener("click", () => {
   }
 });
 // start the game!
-start(gw, gm, ps);
+window.onload = function () {
+  start(gw, gm, ps);
+};
