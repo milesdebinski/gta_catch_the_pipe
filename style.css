@@ -71,7 +71,6 @@ button {
   height: 20px;
   width: 6px;
   background: var(--pipe-color-first);
-
   border-bottom: 1px solid rgb(252, 252, 252 0.2);
   border-top: 5px solid rgb(252, 252, 252 0.2);
   border-top-right-radius: 7px;
