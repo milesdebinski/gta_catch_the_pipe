@@ -109,8 +109,8 @@ const start = (greenWidth, greenMargin, pipeSpeed) => {
 };
 // how many games do you wanna play?
 let setGames = 3;
-// start the game!
 
+// Restart Button
 button.addEventListener("click", () => {
   if (games === setGames || games === 0) {
     setTimeout(() => {
@@ -133,5 +133,5 @@ button.addEventListener("click", () => {
     }
   }
 });
-
+// start the game!
 start(gw, gm, ps);
