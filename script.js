@@ -4,6 +4,10 @@ let audioFail = new Audio("mp3/fail.mp3");
 
 // Display Data
 const trans_data = document.querySelector(".trans_data");
+// Get difficulti level buttons
+// const easyBtn = document.getElementById("easy");
+// const mediumBtn = document.getElementById("medium");
+// const hardBtn = document.getElementById("hard");
 // Get elements
 const pipe = document.getElementById("pipe");
 const green = document.getElementById("green");
@@ -19,17 +23,44 @@ let greenY = transGreen.getPropertyValue("margin");
 let score = 0;
 let games = 0;
 let gameInProgress;
+// Difficulty levels
+// Easy
+const easy = () => {
+  gwMax = 100;
+  gwMin = 60;
+  psMax = 2;
+  psMin = 1.3;
+};
+// Medium
+const medium = () => {
+  gwMax = 70;
+  gwMin = 30;
+  psMax = 1.3;
+  psMin = 0.8;
+};
+// Hard
+const hard = () => {
+  gwMax = 40;
+  gwMin = 20;
+  psMax = 0.8;
+  psMin = 0.5;
+};
 // Initial values greenWidth, greenMargin, pipeSpeed
-let gw = Math.floor(Math.random() * (80 - 20) + 20);
-let gm = Math.floor(Math.random() * (400 - 250) + 250);
-let ps = Math.random() * (2 - 0.7) + 0.7;
-// FIX THIS - RANDOMIZE NUMBERS!!
-// const randomizeNumbers = (gw, gm, ps) => {
-//   gw = Math.floor(Math.random() * (80 - 20) + 20);
-//   gm = Math.floor(Math.random() * (400 - 250) + 250);
-//   ps = Math.random() * (2 - 0.7) + 0.7;
-// };
-// randomizeNumbers();
+let gw;
+let gm;
+let ps;
+let speedMS;
+//Difficulty randomizer - variables
+let gwMax, gwMin, psMax, psMin;
+// Randomize Numbers - difficulty level
+const randomizeNumbers = () => {
+  console.log([gwMax, gwMin, psMax, psMin]);
+  gw = Math.floor(Math.random() * (gwMax - gwMin) + gwMin);
+  gm = Math.floor(Math.random() * (400 - 150) + 150);
+  ps = Math.random() * (psMax - psMin) + psMin;
+  speedMS = Math.round(ps * 1000 + 100);
+};
+
 // GAME LOOP
 const gameLoop = (greenWidth, greenMargin, pipeSpeed) => {
   gameInProgress = true;
@@ -56,17 +87,13 @@ const gameLoop = (greenWidth, greenMargin, pipeSpeed) => {
     pipe.style.background = "var(--pipe-color-first)";
     green.style.background = "var(--green-color-first)";
     bar.style.background = "var(--bar-color-first)";
-  }, 950);
+  }, 450);
 
   setTimeout(() => {
     // Randomize values each time start is run
-
-    gw = Math.floor(Math.random() * (80 - 20) + 20);
-    gm = Math.floor(Math.random() * (400 - 150) + 150);
-    ps = Math.random() * (2 - 0.7) + 0.7;
-
+    randomizeNumbers();
     start(gw, gm, ps);
-  }, 1000);
+  }, 500);
 
   // Add Score & check pipe position
   if (marginP > marginG && marginP < greenMargin + greenWidth) {
@@ -120,6 +147,7 @@ const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
 // Start
 const start = (greenWidth, greenMargin, pipeSpeed, difficultyLevel) => {
   // Assign css values
+
   green.style.width = `${greenWidth}px`;
   green.style.margin = `0px 0px 0px ${greenMargin}px`;
   pipe.style.transition = `all ${pipeSpeed}s linear 0s`;
@@ -137,16 +165,28 @@ const start = (greenWidth, greenMargin, pipeSpeed, difficultyLevel) => {
   stopThePipeLister(greenWidth, greenMargin, pipeSpeed);
 };
 
-// How many games do you wanna play?
-let setGames = 3;
-// set difficulty lvl between 1 and 5 (1 easy - 5 super hard)
-let difficulty = 1;
+// Reset Timer
+let time;
+const resetTimer = () => {
+  clearTimeout(time);
+  time = setTimeout(nextGame, speedMS);
+  console.log("Reset Timer");
+};
+// Progress to the next game
+const nextGame = () => {
+  if (games !== setGames) {
+    window.removeEventListener("keydown", spaceListenerCallback);
+    console.log("Next Game");
+    gameLoop();
+  }
+};
 
-// start the game!
-window.onload = function () {
-  setTimeout(() => {
-    start(gw, gm, ps);
-  }, 1500);
+// TIMER - Progress when player inactive
+const inactivityTime = () => {
+  console.log("START");
+  window.onload = resetTimer;
+  window.onkeypress = resetTimer;
+  resetTimer();
 };
 
 // Restart Button
@@ -172,26 +212,15 @@ button.addEventListener("click", () => {
   }
 });
 
+// How many games do you wanna play?
+let setGames = 3;
 
-let time;
-const resetTimer = () => {
-  clearTimeout(time);
-  time = setTimeout(nextGame, 2000);
-  console.log("Reset Timer");
-};
-
-const nextGame = () => {
-  if (games !== setGames) {
-    window.removeEventListener("keydown", spaceListenerCallback);
-    console.log("Next Game");
-    gameLoop();
-  }
-};
-
-// TIMER - Progress when player inactive
-const inactivityTime = () => {
-  console.log("START");
-  window.onload = resetTimer;
-  window.onkeypress = resetTimer;
-  resetTimer();
+// start the game!
+window.onload = () => {
+  setTimeout(() => {
+    // Choose from:  easy(), medium(), hard()
+    hard();
+    randomizeNumbers();
+    start(gw, gm, ps);
+  }, 500);
 };
