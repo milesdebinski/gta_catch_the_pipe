@@ -3,12 +3,12 @@
 :root {
   /* Default color set */
   /* --bar-color-border: rgba(255, 255, 255, 0.2);
-  --bar-color-first: rgba(107, 38, 38, 0.65);
+  --bar-color-first: rgb(118, 99, 29, 0.58);
   --bar-color-second: rgba(105, 9, 9, 0.95);
-  --green-color-first: rgba(90, 148, 129, 0.95);
-  --green-color-second: rgba(0, 150, 105, 0.95);
+  --green-color-first: rgb(182, 151, 55, 0.85);
+  --green-color-second: rgba(66, 138, 68, 0.95);
   --pipe-color-first: rgba(216, 202, 5, 0.8);
-  --pipe-color-green: rgba(0, 150, 105, 0.95);
+  --pipe-color-green: rgba(66, 138, 68, 0.95);
   --pipe-color-bar: rgba(105, 9, 9, 0.85); */
 
   /* Alt color set  - comment this and uncoment Default to change*/
