@@ -164,7 +164,6 @@ const start = (greenWidth, greenMargin, pipeSpeed, difficultyLevel) => {
   inactivityTime();
   stopThePipeLister(greenWidth, greenMargin, pipeSpeed);
 };
-
 // Reset Timer
 let time;
 const resetTimer = () => {
@@ -213,13 +212,13 @@ button.addEventListener("click", () => {
 });
 
 // How many games do you wanna play?
-let setGames = 3;
+let setGames = 10;
 
 // start the game!
 window.onload = () => {
   setTimeout(() => {
     // Choose from:  easy(), medium(), hard()
-    hard();
+    medium();
     randomizeNumbers();
     start(gw, gm, ps);
   }, 500);

@@ -12,8 +12,8 @@
   --pipe-color-bar: rgba(105, 9, 9, 0.85); */
 
   /* Alt color set  - comment this and uncoment Default to change*/
-  --bar-color-border: rgba(255, 255, 255, 0.15);
-  --bar-color-first: rgba(57, 76, 100, 0.9);
+  --bar-color-border: rgba(255, 255, 255, 0.12);
+  --bar-color-first: rgba(57, 76, 100, 0.75);
   --bar-color-second: rgba(121, 24, 21, 0.95);
   --green-color-first: rgba(43, 110, 187, 0.95);
   --green-color-second: rgba(102, 152, 104, 0.95);
