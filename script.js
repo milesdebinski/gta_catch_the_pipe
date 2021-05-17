@@ -95,16 +95,25 @@ const gameLoop = (greenWidth, greenMargin, pipeSpeed) => {
   return;
 };
 
+let greenWidthG;
+let greenMarginG;
+let pipeSpeedG;
+
+const spaceListenerCallback = (action) => {
+  if (action.keyCode === 32) {
+    window.removeEventListener("keydown", spaceListenerCallback);
+    resetTimer();
+    gameLoop(greenWidthG, greenMarginG, pipeSpeedG);
+  } else {
+    console.log("press spacebar!");
+  }
+};
+
 // Stop The Pipe on keydown - SPACE
 const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
-  const spaceListenerCallback = (action) => {
-    if (action.keyCode === 32) {
-      window.removeEventListener("keydown", spaceListenerCallback);
-      gameLoop(greenWidth, greenMargin, pipeSpeed);
-    } else {
-      console.log("press spacebar!");
-    }
-  };
+  greenWidthG = greenWidth;
+  greenMarginG = greenMargin;
+  pipeSpeedG = pipeSpeed;
   window.addEventListener("keydown", spaceListenerCallback);
 };
 
@@ -163,24 +172,25 @@ button.addEventListener("click", () => {
   }
 });
 
+
+let time;
+const resetTimer = () => {
+  clearTimeout(time);
+  time = setTimeout(nextGame, 2000);
+  console.log("Reset Timer");
+};
+
+const nextGame = () => {
+  if (games !== setGames) {
+    window.removeEventListener("keydown", spaceListenerCallback);
+    console.log("Next Game");
+    gameLoop();
+  }
+};
+
 // TIMER - Progress when player inactive
 const inactivityTime = () => {
   console.log("START");
-  let time;
-
-  const nextGame = () => {
-    if (games !== setGames) {
-      console.log("Next Game");
-      gameLoop();
-    }
-  };
-
-  const resetTimer = () => {
-    clearTimeout(time);
-    time = setTimeout(nextGame, 2000);
-    console.log("Reset Timer");
-  };
-
   window.onload = resetTimer;
   window.onkeypress = resetTimer;
   resetTimer();
