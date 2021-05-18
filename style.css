@@ -58,13 +58,11 @@ button {
   width: 600px;
   height: 10px;
   background: var(--bar-color-first);
-
   border: 1px solid var(--bar-color-border);
   top: 91%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .pipe {
   color: #fff;
   position: absolute;
@@ -86,10 +84,8 @@ button {
   width: 50px;
   display: none;
   background: var(--green-color-first);
-
   margin: 0px 0px 0px 350px;
 }
-
 /* background */
 .bg {
   position: relative;

@@ -1,7 +1,6 @@
 // Audio files
 let audioSuccess = new Audio("mp3/success.mp3");
 let audioFail = new Audio("mp3/fail.mp3");
-
 // Display Data
 const trans_data = document.querySelector(".trans_data");
 // Get difficulti level buttons
@@ -22,7 +21,7 @@ let greenY = transGreen.getPropertyValue("margin");
 // Global variable to keep score
 let score = 0;
 let games = 0;
-let gameInProgress;
+
 // Difficulty levels
 // Easy
 const easy = () => {
@@ -45,14 +44,14 @@ const hard = () => {
   psMax = 0.8;
   psMin = 0.5;
 };
-// Initial values greenWidth, greenMargin, pipeSpeed
+// Initial values greenWidth, greenMargin, pipeSpeed, speed for timeout
 let gw;
 let gm;
 let ps;
 let speedMS;
-//Difficulty randomizer - variables
+//Difficulty Randomizer - variables
 let gwMax, gwMin, psMax, psMin;
-// Randomize Numbers - difficulty level
+// Difficulty Randomizer - randomize
 const randomizeNumbers = () => {
   console.log([gwMax, gwMin, psMax, psMin]);
   gw = Math.floor(Math.random() * (gwMax - gwMin) + gwMin);
@@ -63,7 +62,6 @@ const randomizeNumbers = () => {
 
 // GAME LOOP
 const gameLoop = (greenWidth, greenMargin, pipeSpeed) => {
-  gameInProgress = true;
   console.log(games + 1);
   // Update "pipe" margin value
   pipeY = transPipe.getPropertyValue("margin");
@@ -104,7 +102,6 @@ const gameLoop = (greenWidth, greenMargin, pipeSpeed) => {
     pipe.style.background = "var(--pipe-color-green)";
     pipe.style.transition = "all 0s linear 0s";
   } else {
-    gameInProgress = false;
     audioFail.play();
     games++;
     bar.style.background = "var(--bar-color-second)";
@@ -122,32 +119,24 @@ const gameLoop = (greenWidth, greenMargin, pipeSpeed) => {
   return;
 };
 
-let greenWidthG;
-let greenMarginG;
-let pipeSpeedG;
-
 const spaceListenerCallback = (action) => {
   if (action.keyCode === 32) {
     window.removeEventListener("keydown", spaceListenerCallback);
     resetTimer();
-    gameLoop(greenWidthG, greenMarginG, pipeSpeedG);
+    gameLoop(gw, gm, ps);
   } else {
     console.log("press spacebar!");
   }
 };
 
 // Stop The Pipe on keydown - SPACE
-const stopThePipeLister = (greenWidth, greenMargin, pipeSpeed) => {
-  greenWidthG = greenWidth;
-  greenMarginG = greenMargin;
-  pipeSpeedG = pipeSpeed;
+const stopThePipeLister = () => {
   window.addEventListener("keydown", spaceListenerCallback);
 };
 
-// Start
-const start = (greenWidth, greenMargin, pipeSpeed, difficultyLevel) => {
+// Start - Initial game loop
+const start = (greenWidth, greenMargin, pipeSpeed) => {
   // Assign css values
-
   green.style.width = `${greenWidth}px`;
   green.style.margin = `0px 0px 0px ${greenMargin}px`;
   pipe.style.transition = `all ${pipeSpeed}s linear 0s`;
@@ -156,15 +145,15 @@ const start = (greenWidth, greenMargin, pipeSpeed, difficultyLevel) => {
 
   // Display Data
   trans_data.textContent = `${score}`;
-  // How many games do you wanna play?
+  // Final alert after the last game
   if (games >= setGames) {
     alert(`Game over. Your score: ${score}.`);
     return console.log(`Your score was: ${score}`);
   }
   inactivityTime();
-  stopThePipeLister(greenWidth, greenMargin, pipeSpeed);
+  stopThePipeLister();
 };
-// Reset Timer
+// Clear Timeout for next game when inactive
 let time;
 const resetTimer = () => {
   clearTimeout(time);
@@ -180,7 +169,7 @@ const nextGame = () => {
   }
 };
 
-// TIMER - Progress when player inactive
+// Reset timer when keypress or reload
 const inactivityTime = () => {
   console.log("START");
   window.onload = resetTimer;
@@ -211,14 +200,13 @@ button.addEventListener("click", () => {
   }
 });
 
-// How many games do you wanna play?
+// Set how many games do you wanna play: Any number.
 let setGames = 10;
-
 // start the game!
 window.onload = () => {
   setTimeout(() => {
-    // Choose from:  easy(), medium(), hard()
-    medium();
+    // Set difficulty level:  easy(), medium(), hard()
+    easy();
     randomizeNumbers();
     start(gw, gm, ps);
   }, 500);
